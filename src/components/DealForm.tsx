@@ -35,6 +35,7 @@ export default function DealForm() {
 							// name => for the submision
 							name='link'
 							id='link'
+							required
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 					</div>
@@ -49,6 +50,7 @@ export default function DealForm() {
 							type='text'
 							name='coupancode'
 							id='coupancode'
+							minLength={5}
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 					</div>
@@ -64,6 +66,8 @@ export default function DealForm() {
 							name='discount'
 							id='discount'
 							defaultValue={10}
+							min={1}
+							max={100}
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 					</div>
