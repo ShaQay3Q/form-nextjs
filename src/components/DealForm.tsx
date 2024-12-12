@@ -2,7 +2,7 @@ import React from "react";
 
 export default function DealForm() {
 	return (
-		<div>
+		<div className='w-full'>
 			<h1 className='text-pink-500 font-bold text-3xl mb-4'>Form</h1>
 
 			<form className='w-full'>
