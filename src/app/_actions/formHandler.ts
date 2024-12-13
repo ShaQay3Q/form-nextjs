@@ -4,7 +4,7 @@ import { dealSchema } from "../_schemas/deal";
 import { DealFormState } from "../_types/deal";
 
 //
-export default async function formHandlerAction(
+export async function formHandlerAction(
 	formData: FormData
 ): Promise<DealFormState<undefined>> {
 	// runs on server sdide => needs to brong back a Promis of the defined type
@@ -25,3 +25,9 @@ export default async function formHandlerAction(
 		return { successMessage: "Deal added successfully" };
 	}
 }
+
+export const handleAction = async (formData: FormData): Promise<void> => {
+	await formHandlerAction(formData);
+};
+
+

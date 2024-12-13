@@ -1,3 +1,6 @@
+"use client";
+
+import { handleAction } from "@/app/_actions/formHandler";
 import React from "react";
 
 export default function DealForm() {
@@ -5,7 +8,10 @@ export default function DealForm() {
 		<div className='w-full'>
 			<h1 className='text-pink-500 font-bold text-3xl mb-4'>Form</h1>
 
-			<form className='w-full'>
+			<form
+				className='w-full'
+				action={handleAction}
+			>
 				<div className='flex flex-col gap-y-4'>
 					<div>
 						<label
@@ -18,6 +24,7 @@ export default function DealForm() {
 							type='text'
 							name='name'
 							id='name'
+							min={3}
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 					</div>
@@ -50,7 +57,8 @@ export default function DealForm() {
 							type='text'
 							name='coupancode'
 							id='coupancode'
-							minLength={5}
+							required
+							min={5}
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 					</div>
@@ -66,6 +74,7 @@ export default function DealForm() {
 							name='discount'
 							id='discount'
 							defaultValue={10}
+							required
 							min={1}
 							max={100}
 							className='w-full p-2 rounded-md text-gray-900'
