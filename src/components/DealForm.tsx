@@ -6,11 +6,11 @@ import React from "react";
 export default function DealForm() {
 	return (
 		<div className='w-full flex justify-center flex-col mx-6'>
-			<h1 className='text-pink-500 font-bold text-3xl mb-4'>Form</h1>
-
+			<h1 className='text-pink-500 font-bold text-3xl mb-4'>Form</h1>@
 			<form
 				className='w-full'
 				action={handleAction}
+				method='POST'
 			>
 				<div className='flex flex-col gap-y-4'>
 					<div>

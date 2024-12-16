@@ -7,7 +7,8 @@ import { DealFormState } from "../_types/deal";
 export async function formHandlerAction(
 	formData: FormData
 ): Promise<DealFormState<undefined>> {
-	// runs on server sdide => needs to brong back a Promis of the defined type
+	// runs on server side => needs to brong back a Promis
+	// of the defined type
 	const unvalidatedDeal = {
 		name: formData.get("name"),
 		link: formData.get("link"),
@@ -22,6 +23,8 @@ export async function formHandlerAction(
 
 		return {};
 	} else {
+		console.log(validatedDeal);
+
 		return { successMessage: "Deal added successfully" };
 	}
 }
