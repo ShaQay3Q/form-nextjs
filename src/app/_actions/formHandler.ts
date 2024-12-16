@@ -2,7 +2,6 @@
 
 import { dealSchema } from "../_schemas/deal";
 import { DealFormState } from "../_types/deal";
-import { z } from "zod";
 import { convertZodErrors } from "../_utils/errors";
 
 // type FormData = z.infer<typeof dealSchema>
@@ -31,7 +30,7 @@ export async function formHandlerAction(
 	} else {
 		console.log(validatedDeal);
 
-		return { successMessage: "Deal added successfully" };
+		return { successMessage: "Deal added successfully", errors: {} };
 	}
 }
 

@@ -1,20 +1,23 @@
 "use client";
 
-import { formHandlerAction, handleAction } from "@/app/_actions/formHandler";
+import { formHandlerAction } from "@/app/_actions/formHandler";
 import { StringMap } from "@/app/_types/deal";
-import { error } from "console";
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function DealForm() {
 	const [errors, setErrors] = useState<StringMap>({});
+	const formRef = useRef<HTMLFormElement>(null);
 
 	const handleFormOnSubmit = async (formData: FormData) => {
 		// gets the error and success message from server and show it on client side
 		const { errors, successMessage } = await formHandlerAction(formData);
 		console.log(errors, successMessage);
-		if (errors) {
-			setErrors(errors);
+		if (successMessage) {
+			toast.success("Deal submited!");
+			formRef.current?.reset();
 		}
+		setErrors(errors || {});
 	};
 	return (
 		<div className='w-full flex justify-center flex-col mx-6'>
@@ -22,6 +25,7 @@ export default function DealForm() {
 			<form
 				className='w-full'
 				action={handleFormOnSubmit}
+				ref={formRef}
 			>
 				<div className='flex flex-col gap-y-4'>
 					<div>
