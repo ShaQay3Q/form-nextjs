@@ -2,8 +2,11 @@
 
 import { dealSchema } from "../_schemas/deal";
 import { DealFormState } from "../_types/deal";
+import { z } from "zod";
+import { convertZodErrors } from "../_utils/errors";
 
-//
+// type FormData = z.infer<typeof dealSchema>
+
 export async function formHandlerAction(
 	formData: FormData
 ): Promise<DealFormState<undefined>> {
@@ -16,12 +19,15 @@ export async function formHandlerAction(
 		discount: formData.get("discount"),
 	};
 
+	// type unvalidatedDeal = z.infer<typeof dealSchema>;
+
 	const validatedDeal = dealSchema.safeParse(unvalidatedDeal);
 
 	if (!validatedDeal.success) {
 		console.log(validatedDeal.error);
 
-		return {};
+		const errors = convertZodErrors(validatedDeal.error);
+		return { errors };
 	} else {
 		console.log(validatedDeal);
 

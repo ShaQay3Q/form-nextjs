@@ -1,5 +1,6 @@
 //! Helper interfaces
 
+// T is t he placeholder for any type that can be used later. 
 export type DealFormState<T> = {
 	errors?: StringMap;
 	successMessage?: string;
