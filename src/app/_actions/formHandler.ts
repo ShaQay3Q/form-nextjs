@@ -11,7 +11,7 @@ export async function formHandlerAction(
 	const unvalidatedDeal = {
 		name: formData.get("name"),
 		link: formData.get("link"),
-		couponCode: formData.get("couponCode"),
+		couponcode: formData.get("couponcode"),
 		discount: formData.get("discount"),
 	};
 
@@ -29,5 +29,3 @@ export async function formHandlerAction(
 export const handleAction = async (formData: FormData): Promise<void> => {
 	await formHandlerAction(formData);
 };
-
-

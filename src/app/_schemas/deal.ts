@@ -7,7 +7,7 @@ export const dealSchema = z.object({
 	link: z
 		.string({ message: "Link is required" })
 		.url("Link must be a valid URL"),
-	coupanCode: z
+	couponcode: z
 		.string({ message: "Coupon Code is required" })
 		.min(5, "Coupon should have at least 5 letters"),
 	discount: z.coerce

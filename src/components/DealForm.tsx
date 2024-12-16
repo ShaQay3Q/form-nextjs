@@ -5,7 +5,7 @@ import React from "react";
 
 export default function DealForm() {
 	return (
-		<div className='w-full'>
+		<div className='w-full flex justify-center flex-col mx-6'>
 			<h1 className='text-pink-500 font-bold text-3xl mb-4'>Form</h1>
 
 			<form
@@ -25,6 +25,7 @@ export default function DealForm() {
 							name='name'
 							id='name'
 							min={3}
+							required
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 					</div>
@@ -49,14 +50,14 @@ export default function DealForm() {
 					<div>
 						<label
 							className='block'
-							htmlFor='coupancode'
+							htmlFor='couponcode'
 						>
-							Coupan Code
+							Coupon Code
 						</label>
 						<input
 							type='text'
-							name='coupancode'
-							id='coupancode'
+							name='couponcode'
+							id='couponcode'
 							required
 							min={5}
 							className='w-full p-2 rounded-md text-gray-900'
