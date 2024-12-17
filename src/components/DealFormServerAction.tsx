@@ -6,7 +6,7 @@ import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import SubmitBtn from "./SubmitBtn";
 
-export default function DealForm() {
+export default function DealFormServerAction() {
 	const [errors, setErrors] = useState<StringMap>({});
 	const [data, setData] = useState<StringMap>({});
 	const formRef = useRef<HTMLFormElement>(null);

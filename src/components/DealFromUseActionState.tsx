@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import SubmitBtn from "./SubmitBtn";
 
 const initialState: DealFormState<StringMap> = {};
-export default function DealForm() {
+export default function DealFromUseActionState() {
 	const formRef = useRef<HTMLFormElement>(null);
 
 	// Progressive inhancement
