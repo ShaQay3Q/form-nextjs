@@ -4,6 +4,7 @@ import { formHandlerAction } from "@/app/_actions/formHandlerServerAction";
 import { StringMap } from "@/app/_types/dealServerAction";
 import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
+import SubmitBtn from "./SubmitBtn";
 
 export default function DealForm() {
 	const [errors, setErrors] = useState<StringMap>({});
@@ -116,9 +117,10 @@ export default function DealForm() {
 							)}
 						</div>
 					</div>
-					<button className='bg-pink-600 w-full rounded-md p-2 mt-5 text-lg font-bold tracking-wider'>
+					{/* <button className='bg-pink-600 w-full rounded-md p-2 mt-5 text-lg font-bold tracking-wider'>
 						Submit
-					</button>
+					</button> */}
+					<SubmitBtn /> {/* not neccessary, cool to have! */}
 				</div>
 			</form>
 		</div>

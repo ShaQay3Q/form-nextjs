@@ -2,10 +2,11 @@
 
 import { formHandlerAction } from "@/app/_actions/formHandlerActionUseActionState";
 import { DealFormState, StringMap } from "@/app/_types/dealServerAction";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useActionState } from "react"; // use this instead of import { useFormState } from "react-dom"; DEPRICATED
 
 import toast from "react-hot-toast";
+import SubmitBtn from "./SubmitBtn";
 
 const initialState: DealFormState<StringMap> = {};
 export default function DealForm() {
@@ -19,8 +20,13 @@ export default function DealForm() {
 		initialState
 	);
 
+	//! serverState => hanndles messages (success/error) directly form server. We do not have to define and handle them from client side
+
 	useEffect(() => {
-		console.log(serverState);
+		if (serverState.successMessage) {
+			toast.success(serverState.successMessage);
+			formRef.current?.reset();
+		}
 	}, [serverState]);
 
 	return (
@@ -46,6 +52,7 @@ export default function DealForm() {
 							min={3}
 							required
 							className='w-full p-2 rounded-md text-gray-900'
+							defaultValue={serverState.data?.name}
 						/>
 						<div className='min-h-2'>
 							{serverState.errors?.name && (
@@ -71,6 +78,7 @@ export default function DealForm() {
 							id='link'
 							required
 							className='w-full p-2 rounded-md text-gray-900'
+							defaultValue={serverState.data?.link}
 						/>
 						<div className='min-h-2'>
 							{serverState.errors?.link && (
@@ -94,6 +102,7 @@ export default function DealForm() {
 							required
 							min={5}
 							className='w-full p-2 rounded-md text-gray-900'
+							defaultValue={serverState.data?.couponcode}
 						/>
 						<div className='min-h-2'>
 							{serverState.errors?.couponcode && (
@@ -114,7 +123,8 @@ export default function DealForm() {
 							type='number'
 							name='discount'
 							id='discount'
-							defaultValue={10}
+							// defaultValue={10}
+							defaultValue={serverState.data?.discount}
 							required
 							min={1}
 							max={100}
@@ -128,9 +138,10 @@ export default function DealForm() {
 							)}
 						</div>
 					</div>
-					<button className='bg-pink-600 w-full rounded-md p-2 mt-5 text-lg font-bold tracking-wider'>
+					{/* <button className='bg-pink-600 w-full rounded-md p-2 mt-5 text-lg font-bold tracking-wider'>
 						Submit
-					</button>
+					</button> */}
+					<SubmitBtn />
 				</div>
 			</form>
 		</div>
