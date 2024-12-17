@@ -1,30 +1,35 @@
 "use client";
 
-import { formHandlerAction } from "@/app/_actions/formHandler";
-import { StringMap } from "@/app/_types/deal";
-import React, { useRef, useState } from "react";
+import { formHandlerAction } from "@/app/_actions/formHandlerActionUseFromState";
+import { DealFormState, StringMap } from "@/app/_types/dealServerAction";
+import React, { useEffect, useRef, useState } from "react";
+import { useActionState } from "react"; // use this instead of import { useFormState } from "react-dom"; DEPRICATED
+
 import toast from "react-hot-toast";
 
+const initialState: DealFormState<StringMap> = {};
 export default function DealForm() {
 	const [errors, setErrors] = useState<StringMap>({});
 	const formRef = useRef<HTMLFormElement>(null);
 
-	const handleFormOnSubmit = async (formData: FormData) => {
-		// gets the error and success message from server and show it on client side
-		const { errors, successMessage } = await formHandlerAction(formData);
-		console.log(errors, successMessage);
-		if (successMessage) {
-			toast.success("Deal submited!");
-			formRef.current?.reset();
-		}
-		setErrors(errors || {});
-	};
+	// Progressive inhancement
+	// instead of calling a function that calls the server action on the client side,
+	// this will do it and works with progressive enhancement
+	const [serverState, formAction] = useActionState(
+		formHandlerAction,
+		initialState
+	);
+
+	useEffect(() => {
+		console.log(serverState);
+	}, [serverState]);
+
 	return (
 		<div className='w-full flex justify-center flex-col mx-6'>
 			<h1 className='text-pink-500 font-bold text-3xl mb-4'>Form</h1>
 			<form
 				className='w-full'
-				action={handleFormOnSubmit}
+				action={formAction}
 				ref={formRef}
 			>
 				<div className='flex flex-col gap-y-4'>

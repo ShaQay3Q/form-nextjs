@@ -1,8 +1,8 @@
 "use server";
 
-import { dealSchema } from "../_schemas/deal";
-import { DealFormState } from "../_types/deal";
-import { convertZodErrors } from "../_utils/errors";
+import { dealSchema } from "../_schemas/dealServerAction";
+import { DealFormState } from "../_types/dealServerAction";
+import { convertZodErrors } from "../_utils/errorsServerAction";
 
 // type FormData = z.infer<typeof dealSchema>
 
@@ -34,6 +34,6 @@ export async function formHandlerAction(
 	}
 }
 
-export const handleAction = async (formData: FormData): Promise<void> => {
-	await formHandlerAction(formData);
-};
+// export const handleAction = async (formData: FormData): Promise<void> => {
+// 	await formHandlerAction(formData);
+// };

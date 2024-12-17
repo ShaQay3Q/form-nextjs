@@ -1,4 +1,4 @@
-import { StringMap } from "../_types/deal";
+import { StringMap } from "../_types/dealServerAction";
 import { ZodError } from "zod";
 
 export const convertZodErrors = (error: ZodError): StringMap => {
