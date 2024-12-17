@@ -3,6 +3,10 @@
 import { dealSchema } from "../_schemas/dealServerAction";
 import { DealFormState, StringMap } from "../_types/dealServerAction";
 import { convertZodErrors } from "../_utils/errorsServerAction";
+import { prisma } from "../_lib/prisma";
+// import { PrismaClient } from "@prisma/client";
+
+// const prisma = new PrismaClient();
 
 export async function formHandlerAction(
 	prevState: DealFormState<StringMap>,
@@ -30,6 +34,24 @@ export async function formHandlerAction(
 		};
 	} else {
 		console.log(validatedDeal);
+		await prisma.enteredData.create({
+			data: {
+				name: validatedDeal.data?.name as string,
+				url: validatedDeal.data?.link as string,
+				couponCode: validatedDeal.data?.couponcode as string,
+				discount: validatedDeal.data?.discount as number,
+			},
+		});
+		// 	.then(
+		// 		async () => {
+		// 		await prisma.$disconnect();
+		// 	}
+		// )
+		// 	.catch(async (error) => {
+		// 		console.error(error);
+		// 		await prisma.$disconnect();
+		// 		process.exit(1);
+		// 	});
 
 		return { successMessage: "Deal added successfully", errors: {}, data: {} };
 	}
