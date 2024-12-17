@@ -1,6 +1,6 @@
 "use client";
 
-import { formHandlerAction } from "@/app/_actions/formHandlerActionUseFromState";
+import { formHandlerAction } from "@/app/_actions/formHandlerActionUseActionState";
 import { DealFormState, StringMap } from "@/app/_types/dealServerAction";
 import React, { useEffect, useRef, useState } from "react";
 import { useActionState } from "react"; // use this instead of import { useFormState } from "react-dom"; DEPRICATED
@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 
 const initialState: DealFormState<StringMap> = {};
 export default function DealForm() {
-	const [errors, setErrors] = useState<StringMap>({});
 	const formRef = useRef<HTMLFormElement>(null);
 
 	// Progressive inhancement
@@ -49,8 +48,10 @@ export default function DealForm() {
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 						<div className='min-h-2'>
-							{errors?.name && (
-								<small className='text-red-500'>{errors.name}</small>
+							{serverState.errors?.name && (
+								<small className='text-red-500'>
+									{serverState.errors.name}
+								</small>
 							)}
 						</div>
 					</div>
@@ -72,8 +73,10 @@ export default function DealForm() {
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 						<div className='min-h-2'>
-							{errors?.link && (
-								<small className='text-red-500'>{errors.link}</small>
+							{serverState.errors?.link && (
+								<small className='text-red-500'>
+									{serverState.errors.link}
+								</small>
 							)}
 						</div>
 					</div>
@@ -93,8 +96,10 @@ export default function DealForm() {
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 						<div className='min-h-2'>
-							{errors?.couponcode && (
-								<small className='text-red-500'>{errors.couponcode}</small>
+							{serverState.errors?.couponcode && (
+								<small className='text-red-500'>
+									{serverState.errors.couponcode}
+								</small>
 							)}
 						</div>
 					</div>
@@ -116,8 +121,10 @@ export default function DealForm() {
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
 						<div className='min-h-2'>
-							{errors?.discout && (
-								<small className='text-red-500'>{errors.discount}</small>
+							{serverState.errors?.discout && (
+								<small className='text-red-500'>
+									{serverState.errors.discount}
+								</small>
 							)}
 						</div>
 					</div>
