@@ -8,16 +8,18 @@ import SubmitBtn from "./SubmitBtn";
 
 export default function DealForm() {
 	const [errors, setErrors] = useState<StringMap>({});
+	const [data, setData] = useState<StringMap>({});
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const handleFormOnSubmit = async (formData: FormData) => {
 		// gets the error and success message from server and show it on client side
-		const { errors, successMessage } = await formHandlerAction(formData);
+		const { errors, successMessage, data } = await formHandlerAction(formData);
 		console.log(errors, successMessage);
 		if (successMessage) {
 			toast.success("Deal submited!");
 			formRef.current?.reset();
 		}
+		setData(data || {});
 		setErrors(errors || {});
 	};
 	return (
@@ -41,6 +43,7 @@ export default function DealForm() {
 							name='name'
 							id='name'
 							min={3}
+							defaultValue={data?.name}
 							required
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
@@ -64,6 +67,7 @@ export default function DealForm() {
 							// name => for the submision
 							name='link'
 							id='link'
+							defaultValue={data?.link}
 							required
 							className='w-full p-2 rounded-md text-gray-900'
 						/>
@@ -84,6 +88,7 @@ export default function DealForm() {
 							type='text'
 							name='couponcode'
 							id='couponcode'
+							defaultValue={data?.couponcode}
 							required
 							min={5}
 							className='w-full p-2 rounded-md text-gray-900'
@@ -105,7 +110,7 @@ export default function DealForm() {
 							type='number'
 							name='discount'
 							id='discount'
-							defaultValue={10}
+							defaultValue={data?.discount}
 							required
 							min={1}
 							max={100}
